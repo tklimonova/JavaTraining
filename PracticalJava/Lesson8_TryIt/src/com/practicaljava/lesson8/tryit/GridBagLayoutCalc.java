@@ -21,7 +21,7 @@ public class GridBagLayoutCalc {
 	}
 	
     // Declare all calculator's components.
-    JPanel windowContent;
+    static JPanel windowContent;
     JTextField displayField;
 
     JButton[] numbers;
@@ -32,7 +32,7 @@ public class GridBagLayoutCalc {
     String[] equals_name;
     String[] controllers_name;
 
-    JPanel p1; 
+    static JPanel p1; 
     
     public void setDisplayValue(String val){
         displayField.setText(val);
@@ -86,21 +86,6 @@ public class GridBagLayoutCalc {
         panelMaker(equals, equals_name, p1, Color.BLACK);
         panelMaker(controllers, controllers_name, p1, Color.BLACK);
 
-
-
-        // Add the panel p1 to the center of the window
-        windowContent.add("Center",p1);
-
-        //Create the frame and set its content pane
-        JFrame frame = new JFrame("Calculator");
-        frame.setContentPane(windowContent);
-
-        // Set the size of the window to be big enough to accommodate all controls
-        frame.pack();
-
-        // Display the window
-        frame.setVisible(true);
-
     }
 
     private void panelMaker(JButton[] buttons, String[] strings, JPanel panel, Color color) {
@@ -113,11 +98,28 @@ public class GridBagLayoutCalc {
             panel.add(buttons[i]);
             buttons[i].addActionListener(calcEngine);
         }
-    }    
+    } 
+    
+    public static void createAndShowGUI() {
+    	 // Add the panel p1 to the center of the window
+        windowContent.add("Center",p1);
+
+        //Create the frame and set its content pane
+        JFrame frame = new JFrame("GridBagLayoutCalculator");
+        frame.setContentPane(windowContent);
+
+        // Set the size of the window to be big enough to accommodate all controls
+        frame.pack();
+
+        // Display the window
+        frame.setVisible(true);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
 
         public static void main(String[] args) {
 
          new GridBagLayoutCalc();
+         createAndShowGUI();
 
     }
 
